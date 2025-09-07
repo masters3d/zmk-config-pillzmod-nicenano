@@ -1,0 +1,12 @@
+if SHIELD_PILLZMOD_NICENANO
+
+config ZMK_KEYBOARD_NAME
+    default "Kinesis Advantage (Pillz Mod)"
+
+config ZMK_RGB_UNDERGLOW
+    default n
+
+config ZMK_BACKLIGHT
+    default y
+
+endif

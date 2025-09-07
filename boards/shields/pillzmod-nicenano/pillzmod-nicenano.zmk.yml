@@ -1,0 +1,10 @@
+file_format: "1"
+id: pillzmod_nicenano
+name: Kinesis Advantage (Pillz Mod + Nice!Nano)
+type: shield
+url: https://github.com/dcpedit/pillzmod
+requires: [pro_micro]
+exposes: [arduino_pro_micro]
+features:
+  - keys
+siblings: []

@@ -20,8 +20,9 @@ Thumbs.db
 __pycache__/
 *.pyc
 
-# Zephyr build files
-zephyr/
+# Zephyr build files (but not our custom module.yml)
+zephyr/*
+!zephyr/module.yml
 modules/
 tools/
 bootloader/
