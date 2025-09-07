@@ -1,11 +1,11 @@
 manifest:
   remotes:
-    - name: zmkfirmware
-      url-base: https://github.com/zmkfirmware
+    - name: dcpedit
+      url-base: https://github.com/dcpedit
   projects:
     - name: zmk
-      remote: zmkfirmware
-      revision: main
+      remote: dcpedit
+      revision: pillzmod
       import: app/west.yml
   self:
     path: config
