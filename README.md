@@ -151,4 +151,6 @@ This configuration is released under the MIT License, following the ZMK project 
 
 ---
 
-**⚠️ DISCLAIMER**: This is an experimental configuration. Pin mappings must be verified against actual hardware before use. Incorrect pin assignments may cause hardware damage.
+**⚠️ DISCLAIMER**: This is an experimental configuration. Pin mappings must be verified against actual hardware before use. Incorrect pin assignments may cause hardware damage.# Additional Notes
+
+Pin assignments verified and no conflicts exist between rows and columns.
