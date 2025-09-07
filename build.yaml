@@ -6,6 +6,6 @@
 ---
 include:
   - board: nice_nano_v2
-    shield: pillzmod-pro-nicenano
+    shield: pillzmod_pro_nicenano
   - board: nice_nano_v2
     shield: settings_reset
