@@ -1,0 +1,27 @@
+# Build artifacts
+build/
+.west/
+.venv/
+*.uf2
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Python
+__pycache__/
+*.pyc
+
+# Zephyr build files
+zephyr/
+modules/
+tools/
+bootloader/

@@ -1,0 +1,11 @@
+# This file generates the GitHub Actions matrix.
+# For simple board + shield combinations, add them to the top level board and
+# shield arrays, for more control, add individual board + shield combinations
+# to the `include` property.
+
+---
+include:
+  - board: nice_nano_v2
+    shield: pillzmod-pro-nicenano
+  - board: nice_nano_v2
+    shield: settings_reset

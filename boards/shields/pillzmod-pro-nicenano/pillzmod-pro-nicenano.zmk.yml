@@ -1,0 +1,10 @@
+file_format: "1"
+id: pillzmod_pro_nicenano
+name: Pillzmod Pro Nice!Nano
+type: shield
+url: https://github.com/masters3d/zmk-config-pillzmod-nicenano
+requires: [pro_micro]
+features:
+  - keys
+siblings:
+  - pillzmod_pro_nicenano
