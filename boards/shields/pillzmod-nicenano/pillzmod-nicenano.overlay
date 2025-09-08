@@ -17,20 +17,20 @@
         zmk,backlight = &backlight;
     };
 
-    // Status LEDs (4 total for Pillz Mod)
+    // Status LEDs (4 total for Pillz Mod) - using unused digital pins
     backlight: gpioleds {
         compatible = "gpio-leds";
         gpio_led_0 {
-            gpios = <&pro_micro 21 GPIO_ACTIVE_LOW>;  // A3 pin
+            gpios = <&pro_micro_d 11 GPIO_ACTIVE_LOW>;  // D11 pin (unused)
         };
         gpio_led_1 {
-            gpios = <&pro_micro_a 0 GPIO_ACTIVE_LOW>; // A0 pin  
+            gpios = <&pro_micro_d 12 GPIO_ACTIVE_LOW>; // D12 pin (unused)  
         };
         gpio_led_2 {
-            gpios = <&pro_micro_a 1 GPIO_ACTIVE_LOW>; // A1 pin
+            gpios = <&pro_micro_d 13 GPIO_ACTIVE_LOW>; // D13 pin (unused)
         };
         gpio_led_3 {
-            gpios = <&pro_micro_a 2 GPIO_ACTIVE_LOW>; // A2 pin
+            gpios = <&pro_micro_d 17 GPIO_ACTIVE_LOW>; // D17 pin (unused)
         };
     };
 
@@ -60,32 +60,32 @@ RC( 0, 3) RC( 1, 3) RC( 2, 3) RC( 3, 3) RC( 4, 3) RC( 5, 3)                     
 
         // Rows (15 total) - using Pro Micro digital pins
         row-gpios
-            = <&pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D0
-            , <&pro_micro 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D1  
-            , <&pro_micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D2
-            , <&pro_micro 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D3
-            , <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D4
-            , <&pro_micro 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D5
-            , <&pro_micro 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D6
-            , <&pro_micro 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D7
-            , <&pro_micro 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D8
-            , <&pro_micro 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D9
-            , <&pro_micro 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // D10
-            , <&pro_micro 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // D14 
-            , <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // D15
-            , <&pro_micro 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // D16
-            , <&pro_micro 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // D18
+            = <&pro_micro_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D0
+            , <&pro_micro_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D1  
+            , <&pro_micro_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D2
+            , <&pro_micro_d 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D3
+            , <&pro_micro_d 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D4
+            , <&pro_micro_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D5
+            , <&pro_micro_d 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D6
+            , <&pro_micro_d 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D7
+            , <&pro_micro_d 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D8
+            , <&pro_micro_d 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // D9
+            , <&pro_micro_d 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // D10
+            , <&pro_micro_d 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // D14 
+            , <&pro_micro_d 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // D15
+            , <&pro_micro_d 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // D16
+            , <&pro_micro_d 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // D18
             ;
 
-        // Columns (7 total) - using Pro Micro digital pins  
+        // Columns (7 total) - using Pro Micro digital and analog pins  
         col-gpios
-            = <&pro_micro 19 GPIO_ACTIVE_HIGH>    // D19
-            , <&pro_micro 20 GPIO_ACTIVE_HIGH>    // D20
-            , <&pro_micro 21 GPIO_ACTIVE_HIGH>    // D21  
-            , <&pro_micro_a 0 GPIO_ACTIVE_HIGH>   // A0
-            , <&pro_micro_a 1 GPIO_ACTIVE_HIGH>   // A1
-            , <&pro_micro_a 2 GPIO_ACTIVE_HIGH>   // A2
-            , <&pro_micro_a 3 GPIO_ACTIVE_HIGH>   // A3
+            = <&pro_micro_d 19 GPIO_ACTIVE_HIGH>    // D19
+            , <&pro_micro_d 20 GPIO_ACTIVE_HIGH>    // D20
+            , <&pro_micro_d 21 GPIO_ACTIVE_HIGH>    // D21  
+            , <&pro_micro_a 0 GPIO_ACTIVE_HIGH>     // A0
+            , <&pro_micro_a 1 GPIO_ACTIVE_HIGH>     // A1
+            , <&pro_micro_a 2 GPIO_ACTIVE_HIGH>     // A2
+            , <&pro_micro_a 3 GPIO_ACTIVE_HIGH>     // A3
             ;
     };
 };

@@ -3,7 +3,7 @@ id: pillzmod_nicenano
 name: PillzMod
 type: shield
 url: https://github.com/dcpedit/pillzmod
-requires: [nice_nano_v2]
+requires: [pro_micro]
 features:
   - keys
 siblings: []
