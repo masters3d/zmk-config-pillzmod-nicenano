@@ -6,4 +6,3 @@ url: https://github.com/dcpedit/pillzmod
 requires: [pro_micro]
 features:
   - keys
-  - studio
