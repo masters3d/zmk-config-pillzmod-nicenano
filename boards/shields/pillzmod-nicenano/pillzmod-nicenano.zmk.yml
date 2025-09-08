@@ -1,6 +1,6 @@
 file_format: "1"
 id: pillzmod_nicenano
-name: Kinesis Advantage (Pillz Mod + Nice!Nano)
+name: PillzMod
 type: shield
 url: https://github.com/dcpedit/pillzmod
 requires: [nice_nano_v2]
