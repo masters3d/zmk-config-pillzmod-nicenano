@@ -1,1 +1,1 @@
-add_subdirectory(drivers)
+target_sources(app PRIVATE leds.c)
