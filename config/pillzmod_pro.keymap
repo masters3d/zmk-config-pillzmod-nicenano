@@ -200,7 +200,7 @@
     &trans  &kp RC(Q)  &kp RC(W)  &kp RC(E)  &kp RC(R)  &kp RC(T)                                            &kp RC(Y)  &kp RC(U)  &kp RC(I)  &kp RC(O)  &kp RC(P)  &trans
     &trans  &kp RC(A)  &kp RC(S)  &kp RC(D)  &kp RC(F)  &kp RC(G)                                            &kp RC(H)  &kp RC(J)  &kp RC(K)  &kp RC(L)  &none  &trans
     &trans  &kp RC(Z)  &kp RC(X)  &kp RC(C)  &kp RC(V)  &kp RC(B)                                            &kp RC(N)  &kp RC(M)  &none  &none  &none  &trans
-            &trans  &trans  &trans  &trans                                                                              &trans  &trans  &trans  &trans
+            &trans  &trans  &trans  &trans                                                                              &kp RC(LEFT)  &kp RC(DOWN)  &kp RC(UP)  &kp RC(RIGHT)
                                                   &trans  &trans                                        &trans  &trans
                                                           &trans                                        &trans
                                           &trans  &trans  &trans                                        &trans  &trans  &trans
