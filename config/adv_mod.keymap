@@ -17,9 +17,40 @@
 #include <dt-bindings/zmk/outputs.h>
 
 #define LAYER_KEYPAD 1
-#define LAYER_SYSTEM 2
+#define LAYER_CMD 2
+#define LAYER_SYSTEM 3
 
 / {
+    macros {
+        macro_brackets: macro_brackets {
+            compatible = "zmk,behavior-macro";
+            label = "macro_brackets";
+            #binding-cells = <0>;
+            bindings = <&kp LBKT>, <&kp RBKT>, <&kp LEFT>;
+        };
+
+        macro_braces: macro_braces {
+            compatible = "zmk,behavior-macro";
+            label = "macro_braces";
+            #binding-cells = <0>;
+            bindings = <&kp LBRC>, <&kp RBRC>, <&kp LEFT>;
+        };
+
+        macro_parens: macro_parens {
+            compatible = "zmk,behavior-macro";
+            label = "macro_parens";
+            #binding-cells = <0>;
+            bindings = <&kp LPAR>, <&kp RPAR>, <&kp LEFT>;
+        };
+
+        macro_angle_brackets: macro_angle_brackets {
+            compatible = "zmk,behavior-macro";
+            label = "macro_angle_brackets";
+            #binding-cells = <0>;
+            bindings = <&kp LT>, <&kp GT>, <&kp LEFT>;
+        };
+    };
+
     behaviors {
         mo_key: behavior_mo_key {
             compatible = "zmk,behavior-hold-tap";
@@ -40,6 +71,69 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
+
+        // &dot_override,
+        morph_dot: morph_dot {
+            compatible = "zmk,behavior-mod-morph";
+            label = "MORPH_DOT";
+            #binding-cells = <0>;
+            bindings = <&kp PERIOD>, <&kp COLON>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // &comma_override,
+        morph_comma: morph_comma {
+            compatible = "zmk,behavior-mod-morph";
+            label = "MORPH_COMMA";
+            #binding-cells = <0>;
+            bindings = <&kp COMMA>, <&kp SEMICOLON>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // &parens_left_override,
+        morph_parens_left: morph_parens_left {
+            compatible = "zmk,behavior-mod-morph";
+            label = "MORPH_PARENS_LEFT";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_PARENTHESIS>, <&kp LESS_THAN>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // &parens_right_override,
+        morph_parens_right: morph_parens_right {
+            compatible = "zmk,behavior-mod-morph";
+            label = "MORPH_PARENS_RIGHT";
+            #binding-cells = <0>;
+            bindings = <&kp RIGHT_PARENTHESIS>, <&kp GREATER_THAN>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // &exclamation_override,
+        morph_exclamation: morph_exclamation {
+            compatible = "zmk,behavior-mod-morph";
+            label = "MORPH_EXCLAMATION";
+            #binding-cells = <0>;
+            bindings = <&kp BACKSLASH>, <&kp EXCLAMATION>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // &quote_single_override,
+        morph_quote_single: morph_quote_single {
+            compatible = "zmk,behavior-mod-morph";
+            label = "MORPH_QUOTE_SINGLE";
+            #binding-cells = <0>;
+            bindings = <&kp SINGLE_QUOTE>, <&kp GRAVE>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // &quote_double_override,
+        morph_quote_double: morph_quote_double {
+            compatible = "zmk,behavior-mod-morph";
+            label = "MORPH_QUOTE_DOUBLE";
+            #binding-cells = <0>;
+            bindings = <&kp DOUBLE_QUOTES>, <&kp TILDE>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
     };
 
     keymap {
@@ -47,48 +141,74 @@
 
         default_layer {
             // -----------------------------------------------------------------------------------------
+            // CUSTOMIZED LAYOUT - Synced from adv360 with hardware-specific top row preserved
+            // -----------------------------------------------------------------------------------------
             // |  HOME |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |     |  F9  |  F10 |  F11 |  F12 | PSCRN| SLCK | PAUSE| Layer| SYS  |
-            // |   =   |  1   |  2   |  3   |  4   |  5   |                           |  6   |  7   |  8   |  9   |  0   |  -   |
-            // |  TAB  |  Q   |  W   |  E   |  R   |  T   |                           |  Y   |  U   |  I   |  O   |  P   |  \   |
-            // | CAPS  |  A   |  S   |  D   |  F   |  G   |                           |  H   |  J   |  K   |  L   |  ;   |  '   |
-            // | SHIFT |  Z   |  X   |  C   |  V   |  B   |                           |  N   |  M   |  ,   |  .   |  /   | SHIFT|
-            //         |  `   | INS  | LEFT |RIGHT |      |                           |      |  UP  | DOWN |  [   |  ]   |
-            //                                    | CTRL | ALT  |               | GUI  | CTRL |
+            // |   '   |  "   |  -   |  =   |  /   |C-A-DEL                           |  !\  |  [   |  ]   | (<)  | (>)  |  -   |
+            // | HOME  |  Q   |  W   |  E   |  R   |  T   |                           |  Y   |  U   |  I   |  O   |  P   | DEL  |
+            // | BSPC  |  A   |  S   |  D   |  F   |  G   |                           |  H   |  J   |  K   |  L   | .(;) | ENTER|
+            // |C-BSPC |  Z   |  X   |  C   |  V   |  B   |                           |  N   |  M   |  ,   |  .   | ,(;) | TAB  |
+            //         | WIN  | PGDN | ALT  |KYPAD |      |                           |      | LEFT | DOWN |  UP  |RIGHT |
+            //                                    | CTRL | TAB  |               | CMD  | SHFT |
             //                                           | HOME |               | PGUP |
-            //                              | BSPC | DEL | END  |               | PGDN | ENT  | SPC  |
+            //                              | SPC  | SHFT | ALT  |               | CMD  | SHFT | SPC  |
+            //
+            // Notes: 
+            //   .(;) = morph_dot (Period → Colon when shifted)
+            //   ,(;) = morph_comma (Comma → Semicolon when shifted)
+            //   (<) = morph_parens_left (Left paren → Less than when shifted)
+            //   (>) = morph_parens_right (Right paren → Greater than when shifted)
+            //   !\  = morph_exclamation (Backslash → Exclamation when shifted)
+            //   '   = morph_quote_single (Single quote → Grave when shifted)
+            //   "   = morph_quote_double (Double quote → Tilde when shifted)
             bindings = <
     &kp HOME   &kp F1    &kp F2    &kp F3    &kp F4    &kp F5    &kp F6    &kp F7    &kp F8         &kp F9    &kp F10   &kp F11   &kp F12   &kp PSCRN  &kp SLCK  &kp PAUSE_BREAK  &tog LAYER_KEYPAD  &mo LAYER_SYSTEM
-    &kp EQUAL  &kp N1    &kp N2    &kp N3    &kp N4    &kp N5                                                                                    &kp N6    &kp N7    &kp N8    &kp N9    &kp N0    &kp MINUS
-    &kp TAB    &kp Q     &kp W     &kp E     &kp R     &kp T                                                                                     &kp Y     &kp U     &kp I     &kp O     &kp P     &kp BSLH
-    &kp CAPS   &kp A     &kp S     &kp D     &kp F     &kp G                                                                                     &kp H     &kp J     &kp K     &kp L     &kp SEMI  &kp SQT
-    &kp LSHFT  &kp Z     &kp X     &kp C     &kp V     &kp B                                                                                     &kp N     &kp M     &kp COMMA &kp DOT   &kp SLASH &kp RSHFT
-               &kp GRAVE &kp INSERT &kp LEFT &kp RIGHT                                                                                                     &kp UP    &kp DOWN  &kp LBKT  &kp RBKT
-                                                      &kp LCTRL  &kp LALT                                               &kp RGUI  &kp RCTRL
+    &morph_quote_single  &morph_quote_double  &kp MINUS  &kp EQUAL  &kp SLASH  &kp LC(LA(DEL))                                      &morph_exclamation  &kp LBKT  &kp RBKT  &morph_parens_left  &morph_parens_right  &kp MINUS
+    &kp HOME    &kp Q     &kp W     &kp E     &kp R     &kp T                                                                                     &kp Y     &kp U     &kp I     &kp O     &kp P     &kp DEL
+    &kp BSPC    &kp A     &kp S     &kp D     &kp F     &kp G                                                                                     &kp H     &kp J     &kp K     &kp L     &morph_dot  &kp ENTER
+    &kp LC(BSPC)  &kp Z   &kp X     &kp C     &kp V     &kp B                                                                                     &kp N     &kp M     &kp COMMA &kp DOT   &morph_comma  &kp TAB
+               &kp LEFT_WIN &kp PAGE_DOWN &kp LEFT_ALT &mo LAYER_KEYPAD                                                                                   &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT
+                                                      &kp LEFT_CONTROL  &kp TAB                                        &mo LAYER_CMD  &kp RIGHT_SHIFT
                                                                  &kp HOME                                               &kp PG_UP
-                                        &kp BSPC   &kp DELETE  &kp END                                                &kp PG_DN  &kp ENTER &kp SPACE
+                                        &kp SPACE   &kp LEFT_SHIFT  &kp LEFT_ALT                                       &mo LAYER_CMD  &kp RIGHT_SHIFT &kp SPACE
             >;
         };
         
         keypad_layer {
             // -----------------------------------------------------------------------------------------
-            // Keypad/Numpad layer - Toggle layer for numeric keypad functionality
+            // Keypad layer - Number pad with symbols and macros for brackets/braces
             bindings = <
     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans                          &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-    &trans  &trans  &trans  &trans  &trans  &trans                                                                   &trans  &kp LOCKING_NUM   &kp KP_EQUAL  &kp KP_SLASH  &kp KP_ASTERISK  &trans
-    &trans  &trans  &trans  &trans  &trans  &trans                                                                   &trans  &kp KP_N7    &kp KP_N8    &kp KP_N9    &kp KP_MINUS  &trans
-    &trans  &trans  &trans  &trans  &trans  &trans                                                                   &trans  &kp KP_N4    &kp KP_N5    &kp KP_N6    &kp KP_PLUS   &trans
-    &trans  &trans  &trans  &trans  &trans  &trans                                                                   &trans  &kp KP_N1    &kp KP_N2    &kp KP_N3    &kp KP_ENTER  &trans
-            &trans  &trans  &trans  &trans                                                                                   &trans  &trans  &kp KP_DOT  &kp KP_ENTER
+    &trans  &trans  &trans  &trans  &trans  &kp PERCENT                                                              &kp CARET  &macro_brackets  &macro_braces  &macro_parens  &macro_angle_brackets  &trans
+    &trans  &kp F13  &kp F14  &kp F15  &kp F16  &kp DOLLAR                                                           &kp AMPERSAND  &kp N1  &kp N2  &kp N3  &trans  &trans
+    &trans  &kp F17  &kp F18  &kp F19  &kp F20  &kp POUND                                                            &kp STAR  &kp N4  &kp N5  &kp N6  &kp DOT  &trans
+    &trans  &kp F21  &kp F22  &kp F23  &kp F24  &kp AT_SIGN                                                          &kp PIPE  &kp N7  &kp N8  &kp N9  &kp COMMA  &trans
+            &trans  &trans  &trans  &trans                                                                                   &trans  &kp N0  &trans  &trans
                                                   &trans  &trans                                        &trans  &trans
                                                           &trans                                        &trans
-                                          &trans  &trans  &trans                                        &trans  &trans  &kp KP_N0
+                                          &trans  &trans  &trans                                        &trans  &trans  &trans
+            >;
+        };
+
+        cmd_layer {
+            // -----------------------------------------------------------------------------------------
+            // CMD/FN layer - Control/Command key combinations for all keys
+            bindings = <
+    &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans                          &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+    &trans  &trans  &trans  &kp RC(MINUS)  &kp RC(EQUAL)  &kp RC(SLASH)                                      &kp RC(BACKSLASH)  &kp RC(LEFT_BRACKET)  &kp RC(RIGHT_BRACKET)  &trans  &trans  &trans
+    &trans  &kp RC(Q)  &kp RC(W)  &kp RC(E)  &kp RC(R)  &kp RC(T)                                            &kp RC(Y)  &kp RC(U)  &kp RC(I)  &kp RC(O)  &kp RC(P)  &trans
+    &trans  &kp RC(A)  &kp RC(S)  &kp RC(D)  &kp RC(F)  &kp RC(G)                                            &kp RC(H)  &kp RC(J)  &kp RC(K)  &kp RC(L)  &none  &trans
+    &trans  &kp RC(Z)  &kp RC(X)  &kp RC(C)  &kp RC(V)  &kp RC(B)                                            &kp RC(N)  &kp RC(M)  &none  &none  &none  &trans
+            &trans  &trans  &trans  &trans                                                                              &trans  &trans  &trans  &trans
+                                                  &trans  &trans                                        &trans  &trans
+                                                          &trans                                        &trans
+                                          &trans  &trans  &trans                                        &trans  &trans  &trans
             >;
         };
 
         system_layer {
             // -----------------------------------------------------------------------------------------
-            // System layer: Bluetooth, output selection, bootloader access
-            // No ZMK Studio features - clean, compatible implementation
+            // System layer - Bluetooth, output selection, bootloader access
             bindings = <
     &trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &trans  &trans  &trans  &trans       &bt BT_CLR  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
     &trans  &trans  &trans  &trans  &trans  &trans                                                                   &trans  &trans  &trans  &trans  &trans  &bootloader
