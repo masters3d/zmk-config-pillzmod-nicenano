@@ -206,6 +206,39 @@
             >;
         };
 
+        mapping_layer {
+            // -----------------------------------------------------------------------------------------
+            // MAPPING LAYER: Each key's VALUE defines its logical identity for translation.
+            // This allows accurate translation between keyboards with different physical layouts.
+            // adv_mod layout: 86 keys (18 function + 12×5 main + 8 modifier + 12 thumb)
+            // Thumb keys use KP_N* as unique identifiers matching their function:
+            //   KP_N1 = LAYER_KEYPAD (left inner), KP_N2 = WIN/GUI (left)
+            //   KP_N3 = SPACE (left), KP_N4 = SHIFT (left), KP_N5 = ALT (left)
+            //   KP_N7 = ESC (right inner), KP_N8 = LAYER_KEYPAD (right)
+            //   KP_N9 = LAYER_CMD (right), KP_N0 = SHIFT (right), KP_PLUS = SPACE (right)
+            //   LCTRL = CTRL key, KP_DIVIDE = TAB key
+            bindings = <
+    // Row 0: Function row (18 keys - unique to adv_mod)
+    &kp F1     &kp F2     &kp F3    &kp F4    &kp F5    &kp F6    &kp F7    &kp F8    &kp F9           &kp F10   &kp F11   &kp F12   &kp F13   &kp F14    &kp F15   &kp F16          &kp F17            &kp F18
+    // Row 1: Number/symbol row (6 left + 6 right = 12)
+    &kp GRAVE  &kp N1     &kp N2    &kp N3    &kp N4    &kp N5                                                  &kp N6    &kp N7    &kp N8    &kp N9     &kp N0     &kp BSPC
+    // Row 2: QWERTY row (6 left + 6 right = 12)
+    &kp TAB    &kp Q      &kp W     &kp E     &kp R     &kp T                                                   &kp Y     &kp U     &kp I     &kp O      &kp P      &kp DEL
+    // Row 3: Home row (6 left + 6 right = 12)
+    &kp ESC    &kp A      &kp S     &kp D     &kp F     &kp G                                                   &kp H     &kp J     &kp K     &kp L      &kp SEMI   &kp RET
+    // Row 4: Bottom row (6 left + 6 right = 12)
+    &kp LSHFT  &kp Z      &kp X     &kp C     &kp V     &kp B                                                   &kp N     &kp M     &kp COMMA &kp DOT    &kp SLASH  &kp RSHFT
+    // Row 5: Modifier row (4 left + 4 right = 8)
+               &kp LGUI   &kp HOME  &kp LALT  &kp KP_N1                                                                   &kp LEFT  &kp DOWN  &kp UP     &kp RIGHT
+    // Row 6: Thumb top (2 left + 2 right = 4): CTRL, TAB | CMD, ESC
+                                                       &kp LCTRL  &kp KP_DIVIDE                                &kp KP_N9  &kp KP_N7
+    // Row 7: Thumb middle (1 left + 1 right = 2): WIN, LAYER_KEYPAD
+                                                                  &kp KP_N2                                    &kp KP_N8
+    // Row 8: Thumb bottom (3 left + 3 right = 6): SPACE, SHIFT, ALT | CMD, SHIFT, SPACE
+                                         &kp KP_N3   &kp KP_N4  &kp KP_N5                                      &kp KP_N9  &kp KP_N0 &kp KP_PLUS
+            >;
+        };
+
         system_layer {
             // -----------------------------------------------------------------------------------------
             // System layer - Bluetooth, output selection, bootloader access
