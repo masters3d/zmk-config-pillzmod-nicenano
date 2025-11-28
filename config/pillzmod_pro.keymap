@@ -141,27 +141,26 @@
 
         default_layer {
             // -----------------------------------------------------------------------------------------
-            // CUSTOMIZED LAYOUT - Synced from adv360 with hardware-specific top row preserved
-            // -----------------------------------------------------------------------------------------
-            // |C-A-DEL|  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |     |  F9  |  F10 |  F11 |  F12 | PSCRN| SLCK | PAUSE| Layer| SYS  |
-            // |SCRNSH |  '   |  "   |  -   |  =   |  /   |                           |  !\  |  [   |  ]   | (<)  | (>)  |  -   |
-            // | ESC   |  Q   |  W   |  E   |  R   |  T   |                           |  Y   |  U   |  I   |  O   |  P   | DEL  |
-            // | BSPC  |  A   |  S   |  D   |  F   |  G   |                           |  H   |  J   |  K   |  L   | .(:) | ENTER|
-            // |C-BSPC |  Z   |  X   |  C   |  V   |  B   |                           |  N   |  M   |  ,   |  .   | ,(;) | TAB  |
-            //         | HOME | PGDN | PGUP | END  |      |                           |      | LEFT | DOWN |  UP  |RIGHT |
-            //                                     |KYPAD | WIN  |               | ESC  |KYPAD |
-            //                                            | CTRL |               | CTRL |
-            //                              | SPC  | SHFT | ALT  |               | CMD  | SHFT | SPC  |
+            // Thumb Cluster Layout (unified across all keyboards):
             //
-            // Notes: 
-            //   .(:) = morph_dot (Period → Colon when shifted)
-            //   ,(;) = morph_comma (Comma → Semicolon when shifted)
-            //   (<) = morph_parens_left (Left paren → Less than when shifted)
-            //   (>) = morph_parens_right (Right paren → Greater than when shifted)
-            //   !\  = morph_exclamation (Backslash → Exclamation when shifted)
-            //   '   = morph_quote_single (Single quote → Grave when shifted)
-            //   "   = morph_quote_double (Double quote → Tilde when shifted)
-            //   SCRNSH = Shift+Cmd+S (screenshot shortcut)
+            //     Left Thumb Cluster              Right Thumb Cluster
+            //     (Left hand)                     (Right hand)
+            //     ┌───┬───┬───┐                   ┌───┬───┬───┐
+            //     │L6 │L5 │L4 │                   │R4 │R5 │R6 │
+            //     ├───┼───┼───┤                   ├───┼───┼───┤
+            //     │L1 │L2 │L3 │                   │R3 │R2 │R1 │
+            //     └───┴───┴───┘                   └───┴───┴───┘
+            //    (thumb)  (far)                  (far)  (thumb)
+            //
+            // Position Mapping:
+            //   L1=SPACE  L2=LSHIFT  L3=LALT  L4=LCTRL  L5=LWIN  L6=mo_KEYPAD
+            //   R1=SPACE  R2=RSHIFT  R3=mo_CMD  R4=LCTRL  R5=ESC  R6=mo_KEYPAD
+            //
+            // pillzmod_pro Matrix Positions:
+            //   Row 6 (after arrows): [L6:KEYPAD] [L5:WIN] ... [R5:ESC] [R6:KEYPAD]
+            //   Row 7 (single key):              [L4:CTRL] ... [R4:CTRL]
+            //   Row 8 (bottom):       [L1:SPC] [L2:LSHFT] [L3:LALT] | [R3:CMD] [R2:RSHFT] [R1:SPC]
+            // -----------------------------------------------------------------------------------------
             bindings = <
     &kp LC(LA(DEL))  &kp F1    &kp F2    &kp F3    &kp F4    &kp F5    &kp F6    &kp F7    &kp F8         &kp F9    &kp F10   &kp F11   &kp F12   &kp PSCRN  &kp SLCK  &kp PAUSE_BREAK  &tog LAYER_KEYPAD  &mo LAYER_SYSTEM
     &kp LS(LG(S)) &morph_quote_single  &morph_quote_double  &kp MINUS  &kp EQUAL  &kp SLASH                                       &morph_exclamation  &kp LBKT  &kp RBKT  &morph_parens_left  &morph_parens_right  &kp MINUS
