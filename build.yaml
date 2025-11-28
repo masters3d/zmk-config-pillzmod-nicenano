@@ -7,5 +7,6 @@
 include:
   - board: nice_nano_v2
     shield: pillzmod_pro
+    cmake-args: -DKEYMAP_FILE=${ZMK_CONFIG}/adv_mod.keymap
   - board: nice_nano_v2
     shield: settings_reset
